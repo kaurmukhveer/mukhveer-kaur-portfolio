@@ -1,0 +1,490 @@
+<title>Mukhveer Kaur</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, left-aligned like a test report; sticky section nav, a recruiter summary strip, filterable project cards with a mono "result" line. */
+:root {
+  --bg: #F5F7FA;
+  --surface: #FFFFFF;
+  --fg: #172233;
+  --muted: #566274;
+  --line: #DCE2EA;
+  --accent: #1F4E79;
+  --accent-soft: #E7EEF6;
+  --pass: #2B6A48;
+  --pass-soft: #E8F3EC;
+  --nav-bg: rgba(245, 247, 250, .94);
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1620; --surface: #16202C; --fg: #E6ECF3; --muted: #9DA9B8; --line: #283446; --accent: #8DB8E6; --accent-soft: #1B2A3D; --pass: #82CBA0; --pass-soft: #16281F; --nav-bg: rgba(15, 22, 32, .94);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1620; --surface: #16202C; --fg: #E6ECF3; --muted: #9DA9B8; --line: #283446; --accent: #8DB8E6; --accent-soft: #1B2A3D; --pass: #82CBA0; --pass-soft: #16281F; --nav-bg: rgba(15, 22, 32, .94);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--bg);
+}
+.gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4 { font-family: var(--display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.skip { position: absolute; left: 12px; top: -60px; z-index: 20; background: var(--accent); color: var(--bg); padding: 8px 12px; border-radius: 6px; }
+.skip:focus { top: calc(8px + env(safe-area-inset-top, 0px)); }
+
+/* Sticky nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--nav-bg); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.nav-name { font-family: var(--display); font-weight: 700; font-size: 1.05rem; color: var(--fg); text-decoration: none; white-space: nowrap; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav ul a {
+  display: block; padding: 6px 10px; border-radius: 6px; font-size: 14px; font-weight: 500;
+  color: var(--muted); text-decoration: none; white-space: nowrap;
+}
+.nav ul a:hover { color: var(--fg); background: var(--accent-soft); }
+.nav ul a[aria-current="true"] { color: var(--accent); background: var(--accent-soft); }
+
+main .wrap { padding-block: 48px 72px; display: grid; gap: 64px; }
+section { display: grid; gap: 20px; scroll-margin-top: calc(70px + env(safe-area-inset-top, 0px)); }
+
+/* Header */
+header.hero { display: grid; gap: 18px; }
+.eyebrow { font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+.eyebrow b { color: var(--pass); font-weight: 500; }
+h1 { font-size: clamp(2.6rem, 7vw, 4.2rem); line-height: 1.02; font-weight: 700; letter-spacing: -.02em; }
+.lede { font-size: 1.15rem; max-width: 62ch; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  font: 500 14px var(--body); text-decoration: none; cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.primary:hover { filter: brightness(1.08); color: var(--bg); }
+a[data-ext]::after { content: "\2197"; font-size: .85em; margin-left: 4px; opacity: .75; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Recruiter summary */
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden;
+}
+.fact { padding: 14px 16px; display: grid; gap: 2px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 -1px -1px 0; min-width: 0; }
+.fact dt { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.fact dd { margin: 0; font-weight: 500; font-size: 15px; }
+
+/* Section heads */
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+h2 { font-size: 1.55rem; font-weight: 700; }
+.sec-head > span { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.about p { max-width: 65ch; }
+.about { gap: 14px; }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button {
+  font: 500 13px var(--body); padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+}
+.filters button:hover { color: var(--fg); border-color: var(--muted); }
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.filter-status { font-size: 13px; color: var(--muted); }
+
+/* Projects */
+.projects { display: grid; gap: 16px; }
+.proj {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  padding: 22px; display: grid; gap: 12px; min-width: 0;
+}
+.proj-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+h3 { font-size: 1.22rem; font-weight: 700; }
+.role { font-size: 13.5px; color: var(--muted); }
+.proj > p { max-width: 68ch; }
+.result {
+  font-family: var(--mono); font-size: 13px; color: var(--pass);
+  background: var(--pass-soft); border-radius: 6px; padding: 8px 10px; overflow-wrap: anywhere;
+}
+.result::before { content: "✓ "; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--mono); font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; }
+.proj-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; }
+.proj-links { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; font-weight: 500; }
+details { border-top: 1px dashed var(--line); padding-top: 10px; }
+summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--accent); list-style: none; display: inline-flex; align-items: center; gap: 6px; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; font-family: var(--mono); width: 1ch; }
+details[open] summary::before { content: "−"; }
+details ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 4px; font-size: 15px; }
+details li { max-width: 66ch; }
+.note { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+
+.more-head { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.small-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.small { border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; min-width: 0; background: var(--bg); }
+.small h4 { font-size: 1.02rem; }
+.small p { font-size: 14px; color: var(--muted); }
+.small a { font-size: 14px; font-weight: 500; }
+.empty { color: var(--muted); font-size: 14px; }
+
+/* Experience */
+.timeline { display: grid; gap: 22px; }
+.job { display: grid; grid-template-columns: 150px 1fr; gap: 6px 20px; }
+.when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.job h3 { font-size: 1.08rem; }
+.job .where { color: var(--muted); font-size: 14.5px; }
+.job ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.job li { max-width: 66ch; }
+
+/* Skills */
+.skills { display: grid; gap: 12px; margin: 0; }
+.skill-row { display: grid; grid-template-columns: 170px 1fr; gap: 6px 20px; }
+.skill-row dt { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+.skill-row dd { margin: 0; }
+
+/* Contact */
+.contact { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: grid; gap: 14px; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email { font-family: var(--mono); font-size: 15px; user-select: all; overflow-wrap: anywhere; }
+.copy-status { font-size: 13px; color: var(--pass); }
+
+footer { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+footer a { font-weight: 500; }
+
+@media (max-width: 640px) {
+  main .wrap { padding-block: 28px 48px; gap: 48px; }
+  .nav-name { display: none; }
+  .job, .skill-row { grid-template-columns: 1fr; gap: 2px; }
+  .proj { padding: 18px 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .filters button, .nav ul a { transition: border-color .15s, color .15s, background-color .15s; }
+}
+</style>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav gutter" aria-label="Sections">
+  <div class="wrap">
+    <a class="nav-name" href="#top">Mukhveer Kaur</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main" class="gutter">
+<div class="wrap">
+
+  <header class="hero" id="top">
+    <div class="eyebrow">Ottawa, ON &nbsp;·&nbsp; <b>● Open to work</b></div>
+    <h1>Mukhveer Kaur</h1>
+    <p class="lede">Computer Science graduate from the University of Ottawa. I build backend and Python software and test it carefully, a habit I brought from years of functional testing and root-cause analysis on real hardware.</p>
+    <div class="links">
+      <a class="btn primary" href="#contact">Get in touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/mukhveerkaur" target="_blank" rel="noopener" data-ext>LinkedIn</a>
+      <a class="btn" href="https://github.com/kaurmukhveer" target="_blank" rel="noopener" data-ext>GitHub</a>
+    </div>
+    <dl class="facts" aria-label="Quick facts">
+      <div class="fact"><dt>Looking for</dt><dd>Junior developer, QA automation / SDET, test &amp; verification</dd></div>
+      <div class="fact"><dt>Location</dt><dd>Ottawa · open to relocating in Canada</dd></div>
+      <div class="fact"><dt>Degree</dt><dd>Honours BSc CS, Oct 2026 · Dean's Honour List</dd></div>
+      <div class="fact"><dt>Experience</dt><dd>IT support · aerospace electronics testing</dd></div>
+    </dl>
+  </header>
+
+  <section class="about" id="about" aria-labelledby="about-h">
+    <div class="sec-head"><h2 id="about-h">About</h2></div>
+    <p>I completed an Honours BSc in Computer Science in October 2026 and was named to the Dean's Honour List in my final term. During my degree I worked as an IT Support Technician in uOttawa's Faculty of Science. Before that, I tested aerospace electronics in Brampton and repaired phones in Vancouver.</p>
+    <p>I like work where I can build something and then prove it works.</p>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-h">
+    <div class="sec-head">
+      <h2 id="projects-h">Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" id="f-all" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" id="f-backend" data-filter="backend" aria-pressed="false">Backend</button>
+        <button type="button" id="f-testing" data-filter="testing" aria-pressed="false">Testing &amp; QA</button>
+        <button type="button" id="f-ai" data-filter="ai" aria-pressed="false">AI &amp; data</button>
+        <button type="button" id="f-frontend" data-filter="frontend" aria-pressed="false">Frontend</button>
+      </div>
+    </div>
+    <p class="filter-status" id="filter-status" aria-live="polite">Showing all 9 projects</p>
+
+    <div class="projects">
+      <article class="proj" data-tags="ai testing backend">
+        <div class="proj-top"><h3>Test-Failure Triage Assistant</h3><span class="role">Personal project · 2026</span></div>
+        <p>A Python command-line tool that reads a failing test's log, finds the most relevant known-issue notes with embeddings and cosine similarity, and asks an LLM for a diagnosis that cites only those notes. If nothing matches, it says so instead of guessing.</p>
+        <div class="result">20 pytest tests · CI green · retrieval hit@1 12/12 · triage accuracy 13/13 on synthetic logs</div>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Gemini API</span><span class="chip">numpy</span><span class="chip">pytest</span><span class="chip">GitHub Actions</span></div>
+        <details>
+          <summary>How it works and how I tested it</summary>
+          <ul>
+            <li>Splits a known-issue file into one chunk per issue, embeds each chunk, and normalizes the vectors so a dot product equals cosine similarity.</li>
+            <li>Returns structured JSON with temperature 0, and drops any citation the model invents that wasn't among the retrieved notes.</li>
+            <li>Treats log text as untrusted data, so instructions hidden in a log can't steer the model.</li>
+            <li>Uses a fake embedder and fake LLM in tests, so all 20 tests run offline in CI.</li>
+          </ul>
+          <p class="note">Built with AI assistance. I set up the environment, ran and debugged every step, ran the evaluation and published it.</p>
+        </details>
+        <div class="proj-foot"><div class="proj-links"><a href="https://github.com/kaurmukhveer/test-failure-triage-rag" target="_blank" rel="noopener" data-ext>View code on GitHub</a></div></div>
+      </article>
+
+      <article class="proj" data-tags="backend testing">
+        <div class="proj-top"><h3>RabbitMQ Order-Events System</h3><span class="role">Personal project · 2026</span></div>
+        <p>A producer/consumer system with at-least-once delivery. Database writes are idempotent, so a redelivered message never creates a duplicate order. An Express API with JWT login serves the processed orders.</p>
+        <div class="result">29 automated tests (Jest + pytest) · CI on Ubuntu and macOS · integration test against live RabbitMQ</div>
+        <div class="chips"><span class="chip">Node.js</span><span class="chip">RabbitMQ</span><span class="chip">Express</span><span class="chip">SQLite</span><span class="chip">Docker Compose</span></div>
+        <details>
+          <summary>How it works and how I tested it</summary>
+          <ul>
+            <li>Direct exchange with routing keys, manual acknowledgement and prefetch of 1 for fair dispatch.</li>
+            <li>Schema validation on both the producer and consumer side.</li>
+            <li>Admin and customer roles: customers only see their own orders, filtered in the database query.</li>
+            <li>Unit tests mock the broker; a separate CI job runs the real producer, consumer and API against a RabbitMQ container.</li>
+          </ul>
+        </details>
+        <div class="proj-foot"><div class="proj-links"><a href="https://github.com/kaurmukhveer" target="_blank" rel="noopener" data-ext>Code on my GitHub profile</a></div></div>
+      </article>
+
+      <article class="proj" data-tags="backend testing">
+        <div class="proj-top"><h3>Mental Wellbeing Web Application</h3><span class="role">Honours project · two-person team · 2026</span></div>
+        <p>A full-stack wellbeing chatbot deployed to a live cloud environment. I built the backend authentication, session and API layer, and tested the team's RAG pipeline, which my teammate implemented.</p>
+        <div class="result">Fixed a cross-origin cookie bug (200 on login, 401 on /auth/me) by routing API calls through a same-origin proxy</div>
+        <div class="chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Supabase</span><span class="chip">JWT</span><span class="chip">Netlify</span><span class="chip">Render</span></div>
+        <details>
+          <summary>What I built</summary>
+          <ul>
+            <li>JWT sessions in HTTP-only cookies, bcrypt password hashing and auth middleware on protected routes.</li>
+            <li>REST endpoints for registration, login, logout, session check and chat, plus endpoint documentation for handoff.</li>
+            <li>Found the cookie bug with browser DevTools: the frontend and backend ran on different domains, so the browser blocked the cookie.</li>
+          </ul>
+        </details>
+        <div class="proj-foot"><div class="proj-links"><a href="https://github.com/kaurmukhveer/mental-wellbeing-chatbot-portfolio" target="_blank" rel="noopener" data-ext>Architecture and write-up</a></div></div>
+      </article>
+
+      <article class="proj" data-tags="frontend testing">
+        <div class="proj-top"><h3>YouBelong Community Platform</h3><span class="role">Capstone · 7-member team · 2026</span></div>
+        <p>A prototype connecting community members and partner organizations around homelessness awareness. I built the admin dashboard and the user, event and feedback management pages.</p>
+        <div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">React Router</span></div>
+        <details>
+          <summary>My part</summary>
+          <ul>
+            <li>Gathered requirements from 5+ community organizations with a team from two universities.</li>
+            <li>Built searchable tables and create, edit and delete flows using AI-assisted coding (Codex).</li>
+            <li>Manually tested every feature before each push to GitHub.</li>
+          </ul>
+        </details>
+      </article>
+    </div>
+
+    <p class="more-head">More projects</p>
+    <div class="small-grid">
+      <div class="small" data-tags="frontend">
+        <h4>Bilingual Food Price Dashboard</h4>
+        <p>English/French React dashboard with line and bar charts of synthetic grocery prices, fully localized.</p>
+        <a href="https://food-price-dashboard.vercel.app/" target="_blank" rel="noopener" data-ext>Open live site</a>
+      </div>
+      <div class="small" data-tags="frontend">
+        <h4>GreenCare Lawn Services</h4>
+        <p>React Router site with separate customer booking and admin flows, designed from two user personas.</p>
+        <a href="https://greencare-lawn-service.vercel.app/" target="_blank" rel="noopener" data-ext>Open live site</a>
+      </div>
+      <div class="small" data-tags="frontend">
+        <h4>Bloom Memory</h4>
+        <p>A memory card game with calm and adventure themes, built with React and Gestalt design principles.</p>
+        <a href="https://bloom-memory.vercel.app/" target="_blank" rel="noopener" data-ext>Play it</a>
+      </div>
+      <div class="small" data-tags="frontend">
+        <h4>React Portfolio Site</h4>
+        <p>My first portfolio: reusable React components, a Bootstrap grid and responsive layouts, redesigned several times using NN/g principles.</p>
+        <a href="https://mukhveer-portfolio.vercel.app/" target="_blank" rel="noopener" data-ext>Open live site</a>
+      </div>
+      <div class="small" data-tags="ai">
+        <h4>Car Price Regression</h4>
+        <p>Python pipeline with LOF outlier detection and feature engineering, reaching R² = 0.699 on held-out data. CSI4142 coursework.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="sec-head"><h2 id="exp-h">Experience</h2></div>
+    <div class="timeline">
+      <div class="job">
+        <div class="when">Sep 2022 – Jan 2026</div>
+        <div>
+          <h3>IT Support Technician</h3>
+          <div class="where">Faculty of Science, University of Ottawa</div>
+          <ul>
+            <li>Led workstation replacement across 8+ labs, deploying 100+ machines with SCCM and PXE imaging for a 5,000+ user environment.</li>
+            <li>Administered Active Directory accounts and security groups for 2,000+ users.</li>
+            <li>Diagnosed network and system issues and documented every fix in TOPdesk.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Sep 2020 – Aug 2022</div>
+        <div>
+          <h3>Electronic Technician</h3>
+          <div class="where">Star Navigation Systems Ltd., Brampton</div>
+          <ul>
+            <li>Functionally tested and verified aerospace electronic systems and PCBs against acceptance criteria.</li>
+            <li>Found hardware faults through root-cause analysis and built custom test cables and fixtures.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when">Jun 2019 – Feb 2020</div>
+        <div>
+          <h3>Mobile Repair Technician</h3>
+          <div class="where">Mobile Klinik, Vancouver</div>
+          <ul>
+            <li>Diagnosed and repaired 5–6 devices a day against a 24-hour turnaround standard.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="sec-head"><h2 id="skills-h">Skills</h2></div>
+    <dl class="skills">
+      <div class="skill-row"><dt>Languages</dt><dd>JavaScript, Python, Java, SQL, HTML/CSS, TypeScript (basic)</dd></div>
+      <div class="skill-row"><dt>Backend &amp; frontend</dt><dd>Node.js, Express.js, REST APIs, React, React Router</dd></div>
+      <div class="skill-row"><dt>Testing &amp; CI</dt><dd>pytest, Jest, GitHub Actions, functional and manual testing</dd></div>
+      <div class="skill-row"><dt>Data &amp; AI</dt><dd>PostgreSQL, Supabase, SQLite, RabbitMQ, Docker Compose, Gemini API, embeddings and RAG, pandas, scikit-learn</dd></div>
+      <div class="skill-row"><dt>Security</dt><dd>JWT, HTTP-only cookies, bcrypt, CORS</dd></div>
+      <div class="skill-row"><dt>IT &amp; systems</dt><dd>Windows, Linux, Active Directory, Microsoft SCCM, TCP/IP, DNS, DHCP</dd></div>
+    </dl>
+  </section>
+
+  <section id="education" aria-labelledby="edu-h">
+    <div class="sec-head"><h2 id="edu-h">Education</h2></div>
+    <div class="timeline">
+      <div class="job">
+        <div class="when">Oct 2026</div>
+        <div><h3>Honours BSc, Computer Science</h3><div class="where">University of Ottawa · Dean's Honour List, Winter 2026</div></div>
+      </div>
+      <div class="job">
+        <div class="when">2014 – 2016</div>
+        <div><h3>Electronics Engineering Technician Diploma</h3><div class="where">Sheridan College, Brampton</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="sec-head"><h2 id="contact-h">Contact</h2></div>
+    <div class="contact">
+      <p>The best way to reach me is email or a LinkedIn message. I'm happy to talk about junior developer, QA and test roles in Canada.</p>
+      <div class="email-row">
+        <span class="email" id="email">nijjarmukhveer@gmail.com</span>
+        <button class="btn" id="copy-email" type="button">Copy email</button>
+        <span class="copy-status" id="copy-status" aria-live="polite"></span>
+      </div>
+      <div class="links">
+        <a class="btn primary" href="https://www.linkedin.com/in/mukhveerkaur" target="_blank" rel="noopener" data-ext>Message on LinkedIn</a>
+        <a class="btn" href="https://github.com/kaurmukhveer" target="_blank" rel="noopener" data-ext>GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Mukhveer Kaur · Ottawa, Canada</span><a href="#top">Back to top ↑</a></footer>
+</div>
+</main>
+
+<script>
+(function () {
+  document.querySelectorAll('a[data-ext]').forEach(function (a) {
+    var s = document.createElement('span'); s.className = 'sr-only'; s.textContent = ' (opens in a new tab)'; a.appendChild(s);
+  });
+  // Copy email
+  var copyBtn = document.getElementById("copy-email");
+  var status = document.getElementById("copy-status");
+  var emailEl = document.getElementById("email");
+  function selectEmail() {
+    var r = document.createRange(); r.selectNodeContents(emailEl);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    status.textContent = "Selected. Press Ctrl+C to copy.";
+  }
+  copyBtn.addEventListener("click", function () {
+    try {
+      navigator.clipboard.writeText(emailEl.textContent.trim()).then(function () {
+        status.textContent = "Copied"; copyBtn.textContent = "Copied";
+        setTimeout(function () { copyBtn.textContent = "Copy email"; status.textContent = ""; }, 2000);
+      }, selectEmail);
+    } catch (e) { selectEmail(); }
+  });
+
+  // Project filters
+  var buttons = document.querySelectorAll(".filters button");
+  var items = document.querySelectorAll("#projects [data-tags]");
+  var statusEl = document.getElementById("filter-status");
+  var labels = { all: "", backend: "backend", testing: "testing and QA", ai: "AI and data", frontend: "frontend" };
+  function apply(f) {
+    var shown = 0;
+    items.forEach(function (el) {
+      var on = f === "all" || el.getAttribute("data-tags").split(" ").indexOf(f) !== -1;
+      el.hidden = !on; if (on) shown++;
+    });
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.filter === f)); });
+    statusEl.textContent = f === "all" ? "Showing all " + shown + " projects" : "Showing " + shown + " " + labels[f] + " project" + (shown === 1 ? "" : "s");
+    var more = document.querySelector(".more-head");
+    var anySmall = Array.prototype.some.call(document.querySelectorAll(".small"), function (s) { return !s.hidden; });
+    more.hidden = !anySmall;
+    try { localStorage.setItem("pf-filter", f); } catch (e) {}
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { apply(b.dataset.filter); }); });
+  var saved = null;
+  try { saved = localStorage.getItem("pf-filter"); } catch (e) {}
+  if (saved && labels.hasOwnProperty(saved)) apply(saved);
+
+  // Highlight the current section in the nav
+  var links = document.querySelectorAll(".nav ul a");
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && map[e.target.id]) {
+          links.forEach(function (a) { a.removeAttribute("aria-current"); });
+          map[e.target.id].setAttribute("aria-current", "true");
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+  }
+})();
+</script>
